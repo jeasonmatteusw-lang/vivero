@@ -35,7 +35,7 @@ body {
     background: linear-gradient(135deg, #1F4D36 0%, #2F6F4E 100%);
     color: white;
     padding: 40px 20px;
-    text-align: center;
+    text-align: left;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
