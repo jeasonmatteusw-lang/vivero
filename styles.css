@@ -421,13 +421,6 @@ mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-rad
     color: var(--primary-color);
 }
 
-.author-title {
-    font-size: 0.90rem;
-    font-style: italic;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-}
-
 .app-version {
     font-size: 0.75rem;
     color: #a0aec0;
