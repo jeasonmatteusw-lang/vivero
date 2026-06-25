@@ -447,7 +447,7 @@ mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-rad
 }
 
 .header-container {
-    display: inline-flex;
+    display: flex;
     align-items: left;
     justify-content: center;
     gap: 12px;
