@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivero</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts para una tipografía elegante y legible -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="header-container">
+            <img src="logo.png" alt="Logo Vivero" class="logo">
+
+            <div class="header-text">
+                <h1>Vivero</h1>
+                <p class="subtitle">Ecosistema de aprendizaje socioemocional</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="app-container">
+        
+        <!-- Sección de Filtros de Selección -->
+        <section class="filters-section card">
+             <!-- Contexto de Planeación Curricular -->
+<div class="planning-context">
+    <h2><span class="icon">🌰</span> Información Institucional</h2>
+    
+    <div class="filters-grid">
+
+        <div class="filter-group">
+            <label for="institucion">Colegio</label>
+            <input type="text" id="institucion" placeholder="Nombre de la institución">
+        </div>
+
+        <div class="filter-group">
+            <label for="docentes">Docente(s) responsable(s)</label>
+            <input type="text" id="docentes" placeholder="Nombre(s) de docente(s) o equipo">
+        </div>
+
+        <div class="filter-group">
+            <label for="grado">Grado Escolar</label>
+            <select id="grado">
+                <option value="">Selecciona un grado...</option>
+                <option>Prejardín</option>
+                 <option>Jardín</option>
+                <option>Transición</option>
+                <option>1°</option>
+                <option>2°</option>
+                <option>3°</option>
+                <option>4°</option>
+                <option>5°</option>
+                <option>6°</option>
+                <option>7°</option>
+                <option>8°</option>
+                <option>9°</option>
+                <option>10°</option>
+                <option>11°</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="periodo">Período Académico</label>
+            <select id="periodo">
+                <option value="">Selecciona un período...</option>
+            <option>Período 1</option>
+            <option>Período 2</option>
+            <option>Período 3</option>
+            <option>Período 4</option>
+    </select>
+    </div>
+
+</div>
+
+        </section>
+
+            <h2><span class="icon">🌱</span> Mapa de Aprendizajes Socioemocionales</h2>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="select-curso">Curso de Vida</label>
+                    <select id="select-curso">
+                        <option value="">Seleccione un Curso de Vida...</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="select-etario">Grupo Etario</label>
+                    <select id="select-etario" disabled>
+                        <option value="">Seleccione un Grupo Etario...</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="select-hse">Habilidad Socioemocional</label>
+                    <select id="select-hse" disabled>
+                        <option value="">Seleccione una HSE...</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="select-relacionada">HSE Relacionada</label>
+                    <select id="select-relacionada" disabled>
+                        <option value="">Seleccione una HSE Relacionada...</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contenedor Principal de Contenido Efímero/Dinámico -->
+        <div id="content-layout" class="content-layout hidden">
+            
+            <!-- Sección de Aprendizajes Esenciales -->
+            <section class="aprendizajes-section">
+                <div class="section-title-container">
+                    <h2><span class="icon">🌼</span> Aprendizajes Esenciales</h2>
+                    <p class="section-desc">Seleccione uno de los tres aprendizajes esenciales para transformarlo en un indicador de logro.</p>
+                </div>
+                
+                <div class="cards-container">
+                    <div class="learning-card" id="card-learning-1" onclick="selectLearning(1)">
+                        <span class="card-tag">Aprendizaje 1</span>
+                        <p id="text-learning-1" class="card-text">Contenido del aprendizaje 1...</p>
+                        <div class="card-selection-indicator">Da click para seleccionar</div>
+                    </div>
+                    
+                    <div class="learning-card" id="card-learning-2" onclick="selectLearning(2)">
+                        <span class="card-tag">Aprendizaje 2</span>
+                        <p id="text-learning-2" class="card-text">Contenido del aprendizaje 2...</p>
+                        <div class="card-selection-indicator">Da click para seleccionar</div>
+                    </div>
+                    
+                    <div class="learning-card" id="card-learning-3" onclick="selectLearning(3)">
+                        <span class="card-tag">Aprendizaje 3</span>
+                        <p id="text-learning-3" class="card-text">Contenido del aprendizaje 3...</p>
+                        <div class="card-selection-indicator">Da click para seleccionar</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sección de Laboratorio de Indicadores de Logro -->
+            <section class="constructor-section card">
+                <h2><span class="icon">🪴</span> Laboratorio de Indicadores de Desempeño</h2>
+                
+                <div class="constructor-layout">
+
+    <div class="constructor-left">
+                <!-- Tip Pedagógico Metodológico -->
+                <div class="tip-box">
+                    <div class="tip-header">
+                        <span class="tip-icon">💡</span>
+                        <h3>Estructura de un Indicador</h3>
+                    </div>
+                    <p class="tip-body">
+                        "Observa el verbo principal del aprendizaje (<em>"reconozco"</em>) y conviértelo en una conducta observable (<em>"reconoce y expresa"</em>), añadiendo un contexto (<em>"actividades de aula y situaciones cotidianas"</em>) y una evidencia verificable (<em>"utilizando un lenguaje respetuoso y pertinente"</em>)."
+                    </p>
+                </div>
+
+                <!-- Bloque de Ejemplo Práctico Transversal -->
+                <div class="example-box">
+                    <h4>📝 Ejemplo Práctico:</h4>
+                    <div class="example-grid">
+                        <div class="example-item">
+                            <strong>Aprendizaje Base:</strong> 
+                            <span>"Identifico mis emociones de manera consciente y regulada..."</span>
+                        </div>
+                        <div class="arrow-down">⬇️</div>
+                        <div class="example-item success">
+                            <strong>Indicador Generado:</strong> 
+                            <span><mark class="v">Identifica y expresa</mark> sus emociones de manera consciente <mark class="c">en actividades de aula y situaciones cotidianas</mark>, <mark class="e">utilizando un lenguaje respetuoso y pertinente</mark> como evidencia de autorregulación.</span>
+                        </div>
+                    </div>
+                </div>
+
+                    </div>
+
+    <div class="constructor-right">
+                <!-- Formulario Interactivo del Constructor -->
+                <div class="constructor-interface">
+                    <div class="current-selection-banner">
+                        <strong>Aprendizaje seleccionado para transformar:</strong>
+                        <p id="selected-learning-preview">Ninguno. Por favor, haga clic sobre alguna de las tres tarjetas de aprendizaje de arriba.</p>
+                    </div>
+
+                    <div class="builder-inputs">
+                        <div class="input-field">
+                            <label for="input-conducta">1. Conducta Observable (Verbo en 3ra persona)</label>
+                            <input type="text" id="input-conducta" placeholder="Ej: Reconoce y expresa, Dialoga, Colabora..." oninput="updatePreview()">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="input-contexto">2. Contexto de Aplicación</label>
+                            <input type="text" id="input-contexto" placeholder="Ej: en actividades grupales y debates en el aula..." oninput="updatePreview()">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="input-evidencia">3. Evidencia Verificable</label>
+                            <input type="text" id="input-evidencia" placeholder="Ej: a través de la escucha activa y la validación de la opinión del otro..." oninput="updatePreview()">
+                        </div>
+                    </div>
+
+                    <!-- Previsualización en Tiempo Real -->
+                    <div class="live-preview-box">
+                        <h5>✨ Previsualización del Indicador de Desempeño:</h5>
+                        <p id="indicator-preview" class="empty-preview">Complete los campos de arriba para estructurar el indicador...</p>
+                        <button id="btn-copy" class="btn btn-secondary hidden" onclick="copyIndicator()">📋 Copiar Indicador</button>
+                        <button id="btn-save-indicator"
+        class="btn btn-primary"
+        onclick="saveIndicator()">
+    💾 Guardar Indicador
+</button>
+                    </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section class="planning-table-section card">
+    <h2><span class="icon">🌳</span> Planeación Curricular Anual</h2>
+
+    <table id="planning-table">
+        <thead>
+            <tr>
+                <th>Período</th>
+                <th>HSE</th>
+                <th>HSE Relacionada</th>
+                <th>Indicador</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+
+        <tbody id="planning-body">
+
+        </tbody>
+    </table>
+
+    <div style="margin-top:20px;">
+        <button class="btn btn-primary"
+            onclick="exportarPDF()">
+        🌿 Exportar Planeación en PDF
+        </button>
+    </div>
+
+</section>
+
+        <!-- Estado Inicial / Vacío -->
+        <div id="empty-state" class="empty-state card">
+            <span class="empty-icon">🌱</span>
+            <h3>Inicia el diseño curricular del componente socioemocional</h3>
+            <p>Selecciona una ruta en el Mapa de Aprendizajes para desplegar los aprendizajes esenciales y activar el laboratorio de construcción de indicadores de desempeño.</p>
+        </div>
+
+        <section class="about-vivero">
+    <h2>🌿 Acerca de Vivero</h2>
+
+    <p>
+        <strong>Vivero</strong> es una herramienta digital de apoyo para la
+        planeación curricular en educación socioemocional.
+    </p>
+
+    <p>
+        Las habilidades socioemocionales y sus aprendizajes esenciales incluidos en 
+        esta plataforma se fundamentan en la
+        <em>Malla de Aprendizajes en Habilidades Socioemocionales</em>
+        de la Secretaría de Educación del Distrito de Bogotá (2025).
+    </p>
+
+    <p>
+        Este recurso no representa oficialmente a la Secretaría de Educación
+        del Distrito. Su propósito es facilitar la consulta, organización y
+        planeación pedagógica de los referentes publicados por dicha entidad.
+    </p>
+
+    <p>
+        <strong>Fuente:</strong>
+        Malla de Aprendizajes en Habilidades Socioemocionales.
+        Secretaría de Educación del Distrito, Bogotá, Colombia (2025).
+    </p>
+
+    <p>
+        <strong>Licencia:</strong>
+        Creative Commons BY-NC-ND 4.0
+        (Atribución – No Comercial – Sin Obras Derivadas).
+    </p>
+</section>
+    </main>
+
+    <footer class="app-footer">
+        <div class="footer-content">
+            <p class="author-name"> © Jeason Mateus</p>
+            <p class="author-title">Escuchante, ciudadano y reeducador</p>
+            <p class="app-version">2026</p>
+        </div>
+    </footer>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+   
+    <script src="script.js"></script>
+</body>
+</html>
