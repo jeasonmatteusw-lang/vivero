@@ -508,7 +508,9 @@ mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-rad
 }
 
 .about-vivero p {
-    margin-bottom: 12px;
-    line-height: 1.6;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    line-height: 1.5;
     color: #444;
+}
 }
