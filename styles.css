@@ -457,7 +457,7 @@ mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-rad
 .header-text {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* 🔥 esto centra Vivero y subtítulo */
+    align-items: flex-start;
 }
 
 .logo {
@@ -468,7 +468,7 @@ mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-rad
 .header-text {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: felex-start;
 }
 
 .header-text h1 {
