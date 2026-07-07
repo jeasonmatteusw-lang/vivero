@@ -75,7 +75,7 @@ function updatePreview() {
     const preview = document.getElementById('indicator-preview');
     
     if (c || ctx || e) {
-        preview.innerHTML = `<strong>${c}</strong> ${ctx} <em>${e}</em>`;
+        preview.innerHTML = `${c} ${ctx} ${e}`;        
         preview.classList.remove('empty-preview');
         document.getElementById('btn-copy').classList.remove('hidden');
     } else {
