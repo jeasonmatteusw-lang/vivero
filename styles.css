@@ -1,19 +1,29 @@
 /* CSS para Hacia el Aprendizaje Socioemocional */
 
 :root {
-    --primary-color: #2F6F4E;    /* Slate Blue / Muted Dark Navy */
-    --accent-color: #7FBF9A;     /* Warm Terracotta Soft Highlight */
-    --bg-main: #F6F7F5;          /* Cool clean slate grey light background */
-    --bg-card: #ffffff;
-    --text-main: ##1F2A24;
+    --primary-color: #2F6F4E;
+    --accent-color: #7FBF9A;
+
+    --bg-main: #F6F7F5;
+    --bg-card: #FFFFFF;
+
+    --text-main: #1F2A24;
     --text-muted: #5F6F67;
+
     --border-color: #D9E0DA;
-    --success-light: #e8f8f5;
-    --success-border: #2ecc71;
+
+    --success-light: #E8F8F5;
+    --success-border: #2ECC71;
+
     --font-sans: 'Nunito', sans-serif;
     --font-serif: 'Playfair Display', serif;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+
     --radius: 10px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, .05),
+              0 1px 3px rgba(0, 0, 0, .03);
+
+    --bg-selected: #F7FAFC;
+    background-color: var(--bg-selected);
 }
 
 * {
@@ -27,31 +37,49 @@ body {
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.6;
-    padding-bottom: 40px;
+    padding: 0 0 40px;
 }
 
 /* Header styling */
 .app-header {
     background: linear-gradient(135deg, #1F4D36 0%, #2F6F4E 100%);
     color: white;
-    padding: 40px 20px;
-    text-align: left;
+    padding: 35px 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.header-container h1 {
-    font-family: var(--font-sans);
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.header-text h1 {
     font-size: 2.5rem;
     font-weight: 600;
-    margin-bottom: 1px;
+    margin: 0;
     letter-spacing: -0.5px;
 }
 
-.header-container .subtitle {
-    font-size: 1.1rem;
+.header-text .subtitle {
+    font-size: 1.05rem;
     font-weight: 300;
-    opacity: 0.9;
-    margin-top: 0;
+    margin: 0;
+    opacity: 0.85;
+    line-height: 1.4;
 }
 
 /* App layout container */
@@ -96,31 +124,44 @@ h2 {
     flex-direction: column;
 }
 
-.filter-group label {
-    font-size: 0.9rem;
+.filter-group label,
+.input-field label {
+    font-size: .9rem;
     font-weight: 600;
     margin-bottom: 8px;
     color: var(--primary-color);
 }
 
+.filter-group input,
 .filter-group select,
-.filter-group input {
+.input-field input {
+    width: 100%;
+    height: 46px;
     padding: 12px;
-    font-size: 0.95rem;
+    font-size: .95rem;
     border: 1px solid var(--border-color);
     border-radius: 6px;
-    background-color: #fff;
+    background: var(--bg-card);
     color: var(--text-main);
     outline: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
+    transition: all .2s ease;
+    box-sizing: border-box;
 }
 
+.filter-group input:focus,
+.filter-group select:focus,
+.input-field input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(47,111,78,.15);
+}
+
+.filter-group input:focus,
 .filter-group select:focus {
-    border-color: #2a5298;
-    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(47,111,78,.15);
 }
 
+.filter-group input:disabled,
 .filter-group select:disabled {
     background-color: #f1f2f6;
     color: var(--text-muted);
@@ -162,12 +203,12 @@ h2 {
 .learning-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 15px rgba(0,0,0,0.06);
-    border-color: #cbd5e0;
+    border-color: var(--border-color);
 }
 
 .learning-card.selected {
     border-color: var(--primary-color);
-    background-color: #f7fafc;
+    background-color: var(--bg-selected);
 }
 
 .card-tag {
@@ -177,7 +218,7 @@ h2 {
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    padding: 4px 8px;
+    padding: 5px 8px;
     border-radius: 4px;
     margin-bottom: 12px;
 }
@@ -206,13 +247,12 @@ h2 {
 .learning-card.selected .card-selection-indicator {
     color: var(--primary-color);
     font-weight: 600;
-    content: "Seleccionado";
 }
 
 /* Tip Box Design */
 .tip-box {
     background-color: #EEF6F1;
-    border-left: 5px solid #2F6F4E;
+    border-left: 5px solid var(--primary-color);
     padding: 15px 20px;
     border-radius: 6px;
     margin-bottom: 20px;
@@ -231,7 +271,7 @@ h2 {
 
 .tip-header h3 {
     font-size: 1rem;
-    color: #1F4D36;
+    color: var(--primary-color);
     font-weight: 700;
 }
 
@@ -243,8 +283,8 @@ h2 {
 
 /* Example Box Layout */
 .example-box {
-    background-color: #FFFFFF;
-    border: 1px solid #D9E0DA;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     padding: 15px;
     margin-bottom: 25px;
@@ -265,15 +305,15 @@ h2 {
 .example-item {
     font-size: 0.9rem;
     color: #3F4A44;
-    background: #FFFFFF;
+    background: var(--bg-card);    
     padding: 10px;
     border-radius: 4px;
-    border-left: 3px solid #B7C9BE;
+    border-left: 3px solid var(--border-color);
 }
 
 .example-item.success {
-    border-left-color: #2F6F4E;
-    background-color: #EAF4EE;
+    border-left-color: var(--primary-color);
+    background-color: var(--bg-selected);
 }
 
 .arrow-down {
@@ -282,9 +322,25 @@ h2 {
     color: #7A8A82;
 }
 
-mark.v { background-color: #F3D6D8; color: #7A1F26; padding: 2px 4px; border-radius: 3px; }
-mark.c { background-color: #E9E4F5; color: #3D2C5E; padding: 2px 4px; border-radius: 3px; }
-mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-radius: 3px; }
+mark {
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+mark.v {
+    background-color: #F3D6D8;
+    color: #7A1F26;
+}
+
+mark.c {
+    background-color: #E9E4F5;
+    color: #3D2C5E;
+}
+
+mark.e {
+    background-color: #FFF1CC;
+    color: #7A5A00;
+}
 
 /* Constructor UI Fields */
 .current-selection-banner {
@@ -297,7 +353,7 @@ mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-rad
 }
 
 .current-selection-banner strong {
-    color: #1F4D36;
+    color: var(--primary-color);
 }
 
 .builder-inputs {
@@ -307,35 +363,15 @@ mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-rad
     margin-bottom: 25px;
 }
 
+.filter-group,
 .input-field {
     display: flex;
     flex-direction: column;
 }
 
-.input-field label {
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin-bottom: 6px;
-    color: var(--primary-color);
-}
-
-.input-field input {
-    padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    font-size: 0.95rem;
-    outline: none;
-    transition: all 0.2s;
-}
-
-.input-field input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(44, 74, 94, 0.1);
-}
-
 /* Live Preview block */
 .live-preview-box {
-    background: #2F6F4E;
+   background: var(--primary-color);
     color: #FFFFFF;
     padding: 20px;
     border-radius: var(--radius);
@@ -344,7 +380,7 @@ mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-rad
 }
 
 .live-preview-box h5 {
-    color: #BFD8C6;
+    color: var(--text-muted);
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -376,8 +412,7 @@ mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-rad
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    transition: background-color 0.2s;
-}
+    transition: all .2s ease;}
 
 .btn-secondary {
     background-color: #475569;
@@ -388,31 +423,13 @@ mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-rad
     background-color: #334155;
 }
 
-/* Utility layout helper states */
-.hidden {
-    display: none !important;
-}
-
-.empty-state {
-    text-align: center;
-    padding: 5px 20px;
-    color: var(--text-muted);
-}
-
-.empty-icon {
-    font-size: 3rem;
-    display: block;
-    margin-bottom: 10px;
-}
-
 /* Footer structure styling */
 .app-footer {
     border-top: 1px solid var(--border-color);
     margin-top: 60px;
-    padding-top: 25px;
-    text-align: center;
-    background-color: #fff;
     padding: 30px 20px;
+    text-align: center;
+    background-color: var(--bg-card);
 }
 
 .author-name {
@@ -440,64 +457,18 @@ mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-rad
     gap: 20px;
 }
 
-.app-header {
-    background: linear-gradient(135deg, #1F4D36 0%, #2F6F4E 100%);
-    color: white;
-    padding: 35px 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.header-container {
-    display: flex;
-    align-items: left;
-    justify-content: center;
-    gap: 12px;
-}
-
-/* 🌱 bloque de texto vertical */
-.header-text {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.logo {
-    width: 120px;
-    height: auto;
-}
-
-.header-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: felex-start;
-}
-
-.header-text h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin: 0;
-    letter-spacing: -0.5px;
-}
-
-.header-text .subtitle {
-    font-size: 1.05rem;
-    font-weight: 300;
-    margin: 0;
-    opacity: 0.85;
-    line-height: 1.4;
-}
-
+/* About vivero */
 .about-vivero {
     margin-top: 50px;
     padding: 24px;
-    background-color: #f7faf8;
-    border-left: 5px solid #2F6F4E;
+   background-color:#F7FAF8;
+    border-left:5px solid var(--primary-color);
     border-radius: 10px;
 }
 
 .about-vivero h2 {
     margin-bottom: 16px;
-    color: #1F4D36;
+    color: var(--primary-color);
     font-size: 1.4rem;
 }
 
@@ -505,5 +476,22 @@ mark.e { background-color: #FFF1CC; color: #7A5A00; padding: 2px 4px; border-rad
     font-size: 0.85rem;
     margin-bottom: 10px;
     line-height: 1.5;
-    color: #444;
+    color: var(--text-muted);
+}
+
+/* Utility layout helper states */
+.hidden {
+    display: none !important;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 5px 20px;
+    color: var(--text-muted);
+}
+
+.empty-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
 }
