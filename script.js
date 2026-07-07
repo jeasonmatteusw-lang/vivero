@@ -76,7 +76,14 @@ function updatePreview() {
     
     if (c || ctx || e) {
         preview.innerHTML = `<strong>${c}</strong> ${ctx} <em>${e}</em>`;
+        preview.classList.remove('empty-preview');
         document.getElementById('btn-copy').classList.remove('hidden');
+    } else {
+        preview.textContent =
+            'Complete los campos de arriba para estructurar el indicador...';
+
+        preview.classList.add('empty-preview');
+        document.getElementById('btn-copy').classList.add('hidden');
     }
 }
 
@@ -123,6 +130,11 @@ function saveIndicator() {
     `;
 
     tbody.appendChild(row);
+
+// Quitar la selección visual de todas las tarjetas
+document.querySelectorAll('.learning-card').forEach(card => {
+    card.classList.remove('selected');
+});
 
 // Limpiar selección del aprendizaje
 document.getElementById('selected-learning-preview').textContent =
