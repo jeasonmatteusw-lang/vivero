@@ -1,0 +1,530 @@
+/* CSS para Hacia el Aprendizaje Socioemocional */
+
+:root {
+    --primary-color: #2F6F4E;
+    --accent-color: #7FBF9A;
+
+    --bg-main: #F6F7F5;
+    --bg-card: #FFFFFF;
+
+    --text-main: #1F2A24;
+    --text-muted: #5F6F67;
+
+    --border-color: #D9E0DA;
+
+    --success-light: #E8F8F5;
+    --success-border: #2ECC71;
+
+    --font-sans: 'Nunito', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+
+    --radius: 10px;
+    --shadow: 0 4px 6px rgba(0, 0, 0, .05),
+              0 1px 3px rgba(0, 0, 0, .03);
+
+    --bg-selected: #F7FAFC;
+    background-color: var(--bg-selected);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 0 0 40px;
+}
+
+/* Header styling */
+.app-header {
+    background: linear-gradient(135deg, #1F4D36 0%, #2F6F4E 100%);
+    color: white;
+    padding: 35px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.header-text h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.header-text .subtitle {
+    font-size: 1.05rem;
+    font-weight: 300;
+    margin: 0;
+    opacity: 0.85;
+    line-height: 1.4;
+}
+
+/* App layout container */
+.app-container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+/* Shared Card Pattern */
+.card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+h2 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-weight: 600;
+    border-bottom: 2px solid #edf2f7;
+    padding-bottom: 10px;
+}
+
+.icon {
+    margin-right: 8px;
+}
+
+/* Filters Grid layout using tables/block alternatives for pure styling */
+.filters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label,
+.input-field label {
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.filter-group input,
+.filter-group select,
+.input-field input {
+    width: 100%;
+    height: 46px;
+    padding: 12px;
+    font-size: .95rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-card);
+    color: var(--text-main);
+    outline: none;
+    transition: all .2s ease;
+    box-sizing: border-box;
+}
+
+.filter-group input:focus,
+.filter-group select:focus,
+.input-field input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(47,111,78,.15);
+}
+
+.filter-group input:focus,
+.filter-group select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(47,111,78,.15);
+}
+
+.filter-group input:disabled,
+.filter-group select:disabled {
+    background-color: #f1f2f6;
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+/* Section Title layout */
+.section-title-container {
+    margin-bottom: 15px;
+}
+.section-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-top: -15px;
+    margin-bottom: 20px;
+}
+
+/* Learning Cards Grid */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.learning-card {
+    background-color: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 2px solid transparent;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.learning-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.06);
+    border-color: var(--border-color);
+}
+
+.learning-card.selected {
+    border-color: var(--primary-color);
+    background-color: var(--bg-selected);
+}
+
+.card-tag {
+    align-self: flex-start;
+    background-color: #edf2f7;
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 5px 8px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.learning-card.selected .card-tag {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    flex-grow: 1;
+}
+
+.card-selection-indicator {
+    margin-top: 15px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: right;
+    font-style: italic;
+    border-top: 1px dashed #e2e8f0;
+    padding-top: 8px;
+}
+
+.learning-card.selected .card-selection-indicator {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* Tip Box Design */
+.tip-box {
+    background-color: #EEF6F1;
+    border-left: 5px solid var(--primary-color);
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+.tip-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.tip-icon {
+    font-size: 1.2rem;
+    margin-right: 8px;
+}
+
+.tip-header h3 {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.tip-body {
+    font-size: 0.95rem;
+    color: #4E5F55;
+    font-style: italic;
+}
+
+/* Example Box Layout */
+.example-box {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 25px;
+}
+
+.example-box h4 {
+    font-size: 0.9rem;
+    color: var(--text-main);
+    margin-bottom: 10px;
+}
+
+.example-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.example-item {
+    font-size: 0.9rem;
+    color: #3F4A44;
+    background: var(--bg-card);    
+    padding: 10px;
+    border-radius: 4px;
+    border-left: 3px solid var(--border-color);
+}
+
+.example-item.success {
+    border-left-color: var(--primary-color);
+    background-color: var(--bg-selected);
+}
+
+.arrow-down {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #7A8A82;
+}
+
+mark {
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+mark.v {
+    background-color: #F3D6D8;
+    color: #7A1F26;
+}
+
+mark.c {
+    background-color: #E9E4F5;
+    color: #3D2C5E;
+}
+
+mark.e {
+    background-color: #FFF1CC;
+    color: #7A5A00;
+}
+
+/* Constructor UI Fields */
+.current-selection-banner {
+    background-color: #EEF6F1;
+    border: 1px solid #BFD8C6;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.current-selection-banner strong {
+    color: var(--primary-color);
+}
+
+.builder-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.filter-group,
+.input-field {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Live Preview block */
+.live-preview-box {
+   background: var(--primary-color);
+    color: #FFFFFF;
+    padding: 20px;
+    border-radius: var(--radius);
+    margin-top: 20px;
+    position: relative;
+}
+
+.live-preview-box h5 {
+    color: #EAF6EF;    
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+#indicator-preview {
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 40px;
+}
+
+#indicator-preview.empty-preview {
+    color: #D9E0DA;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+/* Buttons */
+.btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all .2s ease;}
+
+.btn-secondary {
+    background-color: #475569;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #334155;
+}
+
+/* Footer structure styling */
+.app-footer {
+    border-top: 1px solid var(--border-color);
+    margin-top: 60px;
+    padding: 30px 20px;
+    text-align: center;
+    background-color: var(--bg-card);
+}
+
+.author-name {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.app-version {
+    font-size: 0.75rem;
+    color: #a0aec0;
+}
+.constructor-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 30px;
+    margin-top: 25px;
+}
+
+.constructor-left,
+.constructor-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* About vivero */
+.about-vivero {
+    margin-top: 50px;
+    padding: 24px;
+   background-color:#F7FAF8;
+    border-left:5px solid var(--primary-color);
+    border-radius: 10px;
+}
+
+.about-vivero h2 {
+    margin-bottom: 16px;
+    color: var(--primary-color);
+    font-size: 1.4rem;
+}
+
+.about-vivero p {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+/* Utility layout helper states */
+.hidden {
+    display: none !important;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 5px 20px;
+    color: var(--text-muted);
+}
+
+.empty-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    background: #2e7d32;
+    color: white;
+
+    padding: 14px 20px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    opacity: 0;
+    transform: translateY(20px);
+
+    transition: all .35s ease;
+
+    pointer-events: none;
+
+    z-index: 9999;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+html {
+    scroll-behavior: smooth;
+}
