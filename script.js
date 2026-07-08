@@ -28,14 +28,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Lógica de encadenamiento
     selCurso.addEventListener('change', () => {
-        selGrupo.innerHTML = '<option value="">Seleccione un Grupo Etario...</option>';
+        selGrupo.innerHTML = '<option value="">Selecciona un Grupo Etario...</option>';
         const grupos = [...new Set(data.filter(i => i["Curso de Vida"] === selCurso.value).map(i => i["Grupo Etario"]))];
         grupos.forEach(g => selGrupo.innerHTML += `<option value="${g}">${g}</option>`);
         selGrupo.disabled = !selCurso.value;
     });
 
     selGrupo.addEventListener('change', () => {
-        selHSE.innerHTML = '<option value="">Seleccione una HSE...</option>';
+        selHSE.innerHTML = '<option value="">Selecciona una HSE...</option>';
         const hses = [...new Set(data.filter(i => i["Curso de Vida"] === selCurso.value && i["Grupo Etario"] === selGrupo.value).map(i => i["HSE"]))];
         hses.forEach(h => selHSE.innerHTML += `<option value="${h}">${h}</option>`);
         selHSE.disabled = !selGrupo.value;
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     selHSE.addEventListener('change', () => {
-        selRelacionada.innerHTML = '<option value="">Seleccione una HSE Relacionada...</option>';
+        selRelacionada.innerHTML = '<option value="">Selecciona una HSE Relacionada...</option>';
         const rels = [...new Set(data.filter(i => i["Curso de Vida"] === selCurso.value && i["Grupo Etario"] === selGrupo.value && i["HSE"] === selHSE.value).map(i => i["HSE Relacionada"]))];
         rels.forEach(r => selRelacionada.innerHTML += `<option value="${r}">${r}</option>`);
         selRelacionada.disabled = !selHSE.value;
