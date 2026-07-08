@@ -171,7 +171,7 @@ function showToast(message) {
 function copyIndicator() {
     const text = document.getElementById('indicator-preview').textContent;
     navigator.clipboard.writeText(text);
-    alert("Indicador copiado al portapapeles");
+    showToast("📋 ¡Indicador copiado! Ya puedes utilizarlo donde lo necesites.");
 }
 
 /**
@@ -228,10 +228,17 @@ function saveIndicator() {
     const indicador =
         document.getElementById('indicator-preview').textContent;
 
-    if (!periodo || !hse || !indicador) {
-        alert("🌱 Aún falta completar alguna información para crear el indicador. Revisa los campos y continúa.");
-        return;
-    }
+   if (!periodo || !hse || !indicador) {
+
+    const mensaje = document.getElementById('save-message');
+
+    mensaje.textContent =
+    "🌱 Tu indicador está casi listo. Completa la información pendiente para incorporarlo a tu planeación.";
+
+    mensaje.classList.add('show');
+
+    return;
+}
 
     const tbody =
         document.getElementById('planning-body');
