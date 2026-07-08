@@ -49,6 +49,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('text-learning-3').textContent = item["Aprendizaje 3"];
             contentLayout.classList.remove('hidden');
             emptyState.classList.add('hidden');
+
+            const aprendizajes = document.querySelector('.aprendizajes-section');
+            if (aprendizajes) {
+                aprendizajes.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+    });
+}
         }
     });
 
