@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vivero</title>
+
+    <meta name="author" content="Jeason Mateus">
+    <meta name="description" content="Vivero - Ecosistema de Aprendizaje Socioemocional">
+    
     <link rel="stylesheet" href="styles.css">
     <!-- Google Fonts para una tipografía elegante y legible -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,8 +33,9 @@
         <!-- Sección de Filtros de Selección -->
         <section class="filters-section card">
              <!-- Contexto de Planeación Curricular -->
-<div class="planning-context">
-    <h2><span class="icon">🌰</span> Información Institucional</h2>
+
+<div class="planning-context" id="info-institucional"></div>
+             <h2><span class="icon">🌰</span> Información Institucional</h2>
     
     <div class="filters-grid">
 
@@ -143,7 +149,7 @@
             </section>
 
             <!-- Sección de Laboratorio de Indicadores de Logro -->
-            <section class="constructor-section card">
+            <section class="constructor-section card" id="laboratorio-indicadores">            
                 <h2><span class="icon">🪴</span> Laboratorio de Indicadores de Desempeño</h2>
                 
                 <div class="constructor-layout">
@@ -219,7 +225,8 @@
             </section>
         </div>
 
-        <section class="planning-table-section card">
+        <section class="planning-table-section card" id="planeacion-anual">
+
     <h2><span class="icon">🌳</span> Planeación Curricular Anual</h2>
 
     <table id="planning-table">
@@ -300,5 +307,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
    
     <script src="script.js"></script>
+
+    <div id="toast"></div>
+    
 </body>
 </html>
