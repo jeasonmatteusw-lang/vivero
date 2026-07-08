@@ -1,15 +1,28 @@
+/* ==========================================================
+   VIVERO
+   Ecosistema de Aprendizaje Socioemocional
+
+   Autor: Jeason Mateus
+   Año: 2026
+========================================================== */
+
+/* ==========================================================
+   CARGA INICIAL
+========================================================== */
+
 document.addEventListener('DOMContentLoaded', async () => {
     const data = await fetch('datos.json').then(res => res.json());
 
-    // Referencias a los elementos del HTML
+// Selectores
     const selCurso = document.getElementById('select-curso');
     const selGrupo = document.getElementById('select-etario');
     const selHSE = document.getElementById('select-hse');
     const selRelacionada = document.getElementById('select-relacionada');
+
+    // Contenido dinámico
     const contentLayout = document.getElementById('content-layout');
     const emptyState = document.getElementById('empty-state');
 
-    // 1. Cargar Cursos
     const cursos = [...new Set(data.map(i => i["Curso de Vida"]))];
     cursos.forEach(c => selCurso.innerHTML += `<option value="${c}">${c}</option>`);
 
@@ -47,12 +60,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 });
 
+/* ==========================================================
+   CONSTRUCTOR DE INDICADORES
+========================================================== */
+/**
+ * Permite seleccionar uno de los tres aprendizajes
+ * y actualizar la vista previa del indicador.
+ */
+
 // Funciones para el Constructor
-function selectLearning(num) {
-     // Quitar selección previa
+
+function clearLearningSelection() {
     document.querySelectorAll('.learning-card').forEach(card => {
         card.classList.remove('selected');
     });
+}
+
+function selectLearning(num) {
+
+    // Quitar selección previa
+    clearLearningSelection();
 
     // Marcar la nueva tarjeta
     document
@@ -66,7 +93,46 @@ function selectLearning(num) {
         text;
 
     updatePreview();
+
+    const laboratorio = document.getElementById('laboratorio-indicadores');
+
+const inicio = window.scrollY;
+const destino = laboratorio.offsetTop - 20;
+const duracion = 1000; // tiempo del desplazamiento en milisegundos
+
+let inicioTiempo = null;
+
+function desplazamientoSuave(tiempo) {
+    if (!inicioTiempo) inicioTiempo = tiempo;
+
+    const avance = tiempo - inicioTiempo;
+    const porcentaje = Math.min(avance / duracion, 1);
+
+    // efecto suave al inicio y al final
+    const suavizado = porcentaje < 0.5
+        ? 2 * porcentaje * porcentaje
+        : 1 - Math.pow(-2 * porcentaje + 2, 2) / 2;
+
+    window.scrollTo(
+        0,
+        inicio + (destino - inicio) * suavizado
+    );
+
+    if (avance < duracion) {
+        requestAnimationFrame(desplazamientoSuave);
+    }
 }
+
+requestAnimationFrame(desplazamientoSuave);
+}
+
+/**
+ * Actualiza la previsualización del indicador
+ * mientras el usuario escribe.
+ */
+
+const EMPTY_PREVIEW =
+    'Complete los campos de arriba para crear el indicador.';
 
 function updatePreview() {
     const c = document.getElementById('input-conducta').value;
@@ -79,19 +145,75 @@ function updatePreview() {
         preview.classList.remove('empty-preview');
         document.getElementById('btn-copy').classList.remove('hidden');
     } else {
-        preview.textContent =
-            'Complete los campos de arriba para estructurar el indicador...';
-
+       preview.textContent = EMPTY_PREVIEW;
         preview.classList.add('empty-preview');
         document.getElementById('btn-copy').classList.add('hidden');
     }
 }
 
+function showToast(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2500);
+
+}
+
+/**
+ * Copia el indicador al portapapeles.
+ */
 function copyIndicator() {
     const text = document.getElementById('indicator-preview').textContent;
     navigator.clipboard.writeText(text);
     alert("Indicador copiado al portapapeles");
 }
+
+/**
+ * Guarda el indicador.
+ */
+function resetConstructor() {
+
+    // Quitar la selección visual de todas las tarjetas
+    clearLearningSelection();
+
+    // Limpiar selección del aprendizaje
+    document.getElementById('selected-learning-preview').textContent =
+        'Ninguno. Por favor, haga clic sobre alguna de las tres tarjetas de aprendizaje de arriba.';
+
+    // Limpiar campos del constructor
+    document.getElementById('input-conducta').value = '';
+    document.getElementById('input-contexto').value = '';
+    document.getElementById('input-evidencia').value = '';
+
+    // Limpiar previsualización
+    document.getElementById('indicator-preview').textContent =
+        EMPTY_PREVIEW;
+
+    document.getElementById('indicator-preview').classList.add('empty-preview');
+
+    // Ocultar botón copiar
+    document.getElementById('btn-copy').classList.add('hidden');
+
+    // Reiniciar HSE
+    document.getElementById('select-hse').value = '';
+
+    // Reiniciar HSE relacionada
+    document.getElementById('select-relacionada').value = '';
+    document.getElementById('select-relacionada').disabled = true;
+
+    // Ocultar contenido dinámico
+    document.getElementById('content-layout').classList.add('hidden');
+
+    // Mostrar mensaje inicial
+    document.getElementById('empty-state').classList.remove('hidden');
+}
+
 function saveIndicator() {
 
     const periodo =
@@ -107,7 +229,7 @@ function saveIndicator() {
         document.getElementById('indicator-preview').textContent;
 
     if (!periodo || !hse || !indicador) {
-        alert("Complete la información antes de guardar.");
+        alert("🌱 Aún falta completar alguna información para crear el indicador. Revisa los campos y continúa.");
         return;
     }
 
@@ -118,76 +240,110 @@ function saveIndicator() {
         document.createElement('tr');
 
     row.innerHTML = `
-        <td>${periodo}</td>
-        <td>${hse}</td>
-        <td>${relacionada}</td>
-        <td>${indicador}</td>
+    <td>${periodo}</td>
+    <td>${hse}</td>
+    <td>${relacionada}</td>
+    <td>${indicador}</td>
         <td>
-            <button onclick="this.closest('tr').remove()">
-                🗑️
-            </button>
-        </td>
-    `;
+        <button onclick="this.closest('tr').remove()">
+            🗑️
+        </button>
+    </td>
+`;
 
+    
     tbody.appendChild(row);
 
-// Quitar la selección visual de todas las tarjetas
-document.querySelectorAll('.learning-card').forEach(card => {
-    card.classList.remove('selected');
-});
+    savePlanning();
 
-// Limpiar selección del aprendizaje
-document.getElementById('selected-learning-preview').textContent =
-    'Ninguno. Por favor, haga clic sobre alguna de las tres tarjetas de aprendizaje de arriba.';
+    resetConstructor();
+    function showSavedMessage() {
+    showToast("🌱 ¡Excelente! El indicador fue incorporado a tu planeación.");}
 
-// Limpiar campos del constructor
-document.getElementById('input-conducta').value = '';
-document.getElementById('input-contexto').value = '';
-document.getElementById('input-evidencia').value = '';
+function nextPeriod() {
 
-// Limpiar previsualización
-document.getElementById('indicator-preview').textContent =
-    'Complete los campos de arriba para estructurar el indicador...';
+    const periodoSelect = document.getElementById('periodo');
 
-document.getElementById('indicator-preview').classList.add('empty-preview');
+    if (periodoSelect.value === 'Período 1') {
+        periodoSelect.value = 'Período 2';
+    }
+    else if (periodoSelect.value === 'Período 2') {
+        periodoSelect.value = 'Período 3';
+    }
+    else if (periodoSelect.value === 'Período 3') {
+        periodoSelect.value = 'Período 4';
+    }
+    else if (periodoSelect.value === 'Período 4') {
 
-// Ocultar botón copiar
-document.getElementById('btn-copy').classList.add('hidden');
+        periodoSelect.value = '';
 
-alert("Indicador agregado a la planeación.");
-
-// Reiniciar período
-const periodoSelect = document.getElementById('periodo');
-
-if (periodoSelect.value === 'Período 1') {
-    periodoSelect.value = 'Período 2';
+        showToast('🌸 Tu planeación socioemocional está lista para exportar.');
+    }
 }
-else if (periodoSelect.value === 'Período 2') {
-    periodoSelect.value = 'Período 3';
-}
-else if (periodoSelect.value === 'Período 3') {
-    periodoSelect.value = 'Período 4';
-}
-else if (periodoSelect.value === 'Período 4') {
-    periodoSelect.value = '';
+    showSavedMessage();
 
-    alert(
-        '🎉Tu planeación anual está lista para exportar.'
+   function scrollSuave(elemento) {
+
+    const destino = document.getElementById(elemento);
+
+    const inicio = window.scrollY;
+    const posicionFinal = destino.offsetTop - 20;
+    const duracion = 1000;
+
+    let inicioTiempo = null;
+
+    function animar(tiempo) {
+
+        if (!inicioTiempo) inicioTiempo = tiempo;
+
+        const avance = tiempo - inicioTiempo;
+        const porcentaje = Math.min(avance / duracion, 1);
+
+        const suavizado = porcentaje < 0.5
+            ? 2 * porcentaje * porcentaje
+            : 1 - Math.pow(-2 * porcentaje + 2, 2) / 2;
+
+        window.scrollTo(
+            0,
+            inicio + (posicionFinal - inicio) * suavizado
+        );
+
+        if (avance < duracion) {
+            requestAnimationFrame(animar);
+        }
+    }
+
+    requestAnimationFrame(animar);
+}
+
+
+if (periodo !== 'Período 4') {
+
+    scrollSuave('info-institucional');
+
+} else {
+
+    scrollSuave('planeacion-anual');
+
+}
+
+    nextPeriod();
+
+    function savePlanning() {
+
+    const planning =
+        document.getElementById('planning-body').innerHTML;
+
+    localStorage.setItem(
+        'planeacionSocioemocional',
+        planning
     );
 }
-// Reiniciar HSE
-document.getElementById('select-hse').value = '';
-
-// Reiniciar HSE relacionada
-document.getElementById('select-relacionada').value = '';
-document.getElementById('select-relacionada').disabled = true;
-// Limpiar aprendizajes esenciales
-// Ocultar contenido dinámico
-document.getElementById('content-layout').classList.add('hidden');
-
-// Mostrar mensaje inicial
-document.getElementById('empty-state').classList.remove('hidden');
 }
+
+/* ==========================================================
+   EXPORTACIÓN A PDF
+========================================================== */
 
 async function exportarPDF() {
 
