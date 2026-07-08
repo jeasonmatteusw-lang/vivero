@@ -98,7 +98,7 @@ function selectLearning(num) {
 
 const inicio = window.scrollY;
 const destino = laboratorio.offsetTop - 20;
-const duracion = 1000; // tiempo del desplazamiento en milisegundos
+const duracion = 800; // tiempo del desplazamiento en milisegundos
 
 let inicioTiempo = null;
 
@@ -288,7 +288,7 @@ function nextPeriod() {
 
     const inicio = window.scrollY;
     const posicionFinal = destino.offsetTop - 20;
-    const duracion = 1000;
+    const duracion = 800;
 
     let inicioTiempo = null;
 
