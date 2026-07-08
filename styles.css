@@ -495,3 +495,36 @@ mark.e {
     display: block;
     margin-bottom: 10px;
 }
+
+#toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    background: #2e7d32;
+    color: white;
+
+    padding: 14px 20px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    opacity: 0;
+    transform: translateY(20px);
+
+    transition: all .35s ease;
+
+    pointer-events: none;
+
+    z-index: 9999;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+html {
+    scroll-behavior: smooth;
+}
