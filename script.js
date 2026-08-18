@@ -565,7 +565,7 @@ doc.setTextColor(0, 0, 0);
 
 doc.addImage(logo, "PNG", 14, 10, 18, 18);
 
-doc.addImage("jeason.png", "PNG", 14, 270, 18, 6);
+doc.addImage("jeason.png", "PNG", 14, 274, 21, 7);
 
 
 doc.save(
