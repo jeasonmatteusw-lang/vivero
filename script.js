@@ -565,6 +565,9 @@ doc.setTextColor(0, 0, 0);
 
 doc.addImage(logo, "PNG", 14, 10, 18, 18);
 
+doc.addImage("jeason.png", "PNG", 175, 270, 18, 18);
+
+
 doc.save(
     `Planeacion_Socioemocional_${institucion}.pdf`
 );
